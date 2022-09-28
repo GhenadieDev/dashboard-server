@@ -26,7 +26,10 @@ route.get("/posts", checkToken, async (req, res, next) => {
   const { userId, role } = req.decoded;
   try {
     if (role === "admin") {
-      const allPosts = await Post.find({}).exec();
+      const allPosts = await Post.find({})
+        .lean()
+        .populate({ path: "author", select: "_id name surname" })
+        .exec();
       return res.status(200).json({ data: allPosts });
     }
     const allPostsByUserId = await Post.find({ author: userId }).exec();
