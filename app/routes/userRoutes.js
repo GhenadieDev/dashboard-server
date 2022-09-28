@@ -58,7 +58,7 @@ route.get("/users/login", async (req, res, next) => {
   }
 });
 
-route.get("/users/public", checkToken, async (req, res, next) => {
+route.get("/users", checkToken, async (req, res, next) => {
   try {
     const users = await User.find({}).exec();
     if (users.length > 0) {
