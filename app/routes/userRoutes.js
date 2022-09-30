@@ -53,7 +53,11 @@ route.get("/users/login", async (req, res, next) => {
     );
 
     return res
-      .cookie("token", token, { sameSite: "none", secure: true })
+      .cookie("token", token, {
+        httpOnly: false,
+        sameSite: "none",
+        secure: true,
+      })
       .status(200)
       .json({ data: foundUser });
   } catch (error) {
