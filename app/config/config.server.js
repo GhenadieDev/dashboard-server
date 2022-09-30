@@ -5,7 +5,15 @@ import postRoutes from "../routes/postRoutes.js";
 import userRoutes from "../routes/userRoutes.js";
 const server = express();
 
-server.use(cors());
+const corsOptions = {
+  origin: function (origin, callback) {
+    return callback(null, true);
+  },
+  optionsSuccessStatus: 200,
+  credentials: true,
+};
+
+server.use(cors(corsOptions));
 server.use(express.json());
 server.use(cookieParser());
 server.use("/api", postRoutes);
