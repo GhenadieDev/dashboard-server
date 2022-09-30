@@ -52,7 +52,10 @@ route.get("/users/login", async (req, res, next) => {
       process.env.JWT_SECRET
     );
 
-    return res.cookie("token", token).status(200).json({ data: foundUser });
+    return res
+      .cookie("token", token, { sameSite: "none" })
+      .status(200)
+      .json({ data: foundUser });
   } catch (error) {
     next(error);
   }
