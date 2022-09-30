@@ -14,7 +14,7 @@ const server = express();
   origin: "http://localhost:3000",
 };*/
 
-//server.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+server.use(cors());
 server.use(express.json());
 server.use(cookieParser());
 server.use("/api", postRoutes);
