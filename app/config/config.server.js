@@ -14,11 +14,21 @@ const server = express();
   origin: "http://localhost:3000",
 };*/
 
-server.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+//server.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 server.use(express.json());
 server.use(cookieParser());
 server.use("/api", postRoutes);
 server.use("/api", userRoutes);
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 server.use((err, req, res, next) => {
   return res.status(500).json({ message: "Something went wrong" });
