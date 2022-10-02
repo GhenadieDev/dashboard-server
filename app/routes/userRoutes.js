@@ -54,7 +54,7 @@ route.get("/users/login", async (req, res, next) => {
 
     return res
       .cookie("token", token, {
-        httpOnly: false,
+        httpOnly: true,
         sameSite: "none",
         secure: true,
       })
