@@ -19,7 +19,7 @@ server.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  res.header("Allow-Control-Allow-Credentials", true);
+  res.header("Allow-Control-Allow-Credentials", "true");
   next();
 });
 
