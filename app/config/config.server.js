@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import postRoutes from "../routes/postRoutes.js";
 import userRoutes from "../routes/userRoutes.js";
+import authRoute from "../routes/authRoute.js";
 const server = express();
 
 server.use(
@@ -16,6 +17,7 @@ server.use(
 
 server.use(express.json());
 server.use(cookieParser());
+server.use("/api", authRoute);
 server.use("/api", postRoutes);
 server.use("/api", userRoutes);
 
