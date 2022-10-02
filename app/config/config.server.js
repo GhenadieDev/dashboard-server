@@ -5,31 +5,28 @@ import postRoutes from "../routes/postRoutes.js";
 import userRoutes from "../routes/userRoutes.js";
 const server = express();
 
-/*const corsOptions = {
-  origin: function (origin, callback) {
-    return callback(null, true);
-  },
-  optionsSuccessStatus: 200,
-  credentials: true,
-  origin: "http://localhost:3000",
-};*/
+/*server.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+  })
+);*/
 
-server.use(cors());
-server.use(express.json());
-server.use(cookieParser());
-server.use("/api", postRoutes);
-server.use("/api", userRoutes);
-
-app.use(function (req, res, next) {
+server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  res.header("Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS");
+  res.header("Allow-Control-Allow-Credentials", true);
   next();
 });
+
+server.use(express.json());
+server.use(cookieParser());
+server.use("/api", postRoutes);
+server.use("/api", userRoutes);
 
 server.use((err, req, res, next) => {
   return res.status(500).json({ message: "Something went wrong" });
