@@ -10,8 +10,8 @@ server.use(
   cors({
     credentials: true,
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-    preflightContinue: true,
+    /*methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    preflightContinue: true,*/
   })
 );
 
