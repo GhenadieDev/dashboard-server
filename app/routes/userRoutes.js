@@ -76,9 +76,11 @@ route.get("/users", checkToken, async (req, res, next) => {
   }
 });
 
-route.get("/users/:userId", checkToken, async (req, res, next) => {
+route.get("/users/current", checkToken, async (req, res, next) => {
+  const { userId } = req.decoded;
+
   try {
-    const user = await User.findById(req.params.userId).exec();
+    const user = await User.findById(userId).exec();
     if (user) {
       return res.status(200).json({ data: user });
     }
