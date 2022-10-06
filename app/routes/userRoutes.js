@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../schemas/userSchema.js";
 import checkUserByEmail from "../middlewares/checkUserByEmail.js";
-import restrict from "../middlewares/restrict.js";
 import checkToken from "../middlewares/checkToken.js";
 
 const route = express.Router();
