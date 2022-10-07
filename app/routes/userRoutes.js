@@ -99,7 +99,7 @@ route.delete("/users/:id/delete", checkToken, async (req, res, next) => {
 
 route.get("/users/logout", checkToken, async (req, res) => {
   return res
-    .clearCookie("token")
+    .cookie("token", "", { httpOnly: true, sameSite: "none", secure: true })
     .status(200)
     .json({ message: "Successfully logged out" });
 });
