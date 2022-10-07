@@ -97,11 +97,8 @@ route.delete("/users/:id/delete", checkToken, async (req, res, next) => {
   }
 });
 
-route.get("/users/logout", checkToken, async (req, res) => {
-  return res
-    .cookie("token", "", { httpOnly: true, sameSite: "none", secure: true })
-    .status(200)
-    .json({ message: "Successfully logged out" });
+route.get("/users/logout", checkToken, async (req, res, next) => {
+  res.clearCookie("token").send();
 });
 
 export default route;
