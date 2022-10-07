@@ -98,8 +98,10 @@ route.delete("/users/:id/delete", checkToken, async (req, res, next) => {
 });
 
 route.get("/users/logout", checkToken, async (req, res) => {
-  res.clearCookie("token").end();
-  return res.status(200).json({ message: "User logged out successfully" });
+  return res
+    .clearCookie("token")
+    .status(200)
+    .json({ message: "Successfully logged out" });
 });
 
 export default route;
