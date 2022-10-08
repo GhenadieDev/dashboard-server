@@ -6,7 +6,10 @@ import userRoutes from "../routes/userRoutes.js";
 import authRoute from "../routes/authRoute.js";
 const server = express();
 
-const whitelist = ["https://react-dashboard-rzy3.vercel.app"]; //white list consumers
+const whitelist = [
+  "https://react-dashboard-rzy3.vercel.app",
+  "http://localhost:3000",
+];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
