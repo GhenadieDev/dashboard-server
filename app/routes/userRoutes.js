@@ -88,15 +88,6 @@ route.get("/users/current", checkToken, async (req, res, next) => {
   }
 });
 
-route.delete("/users/:id/delete", checkToken, async (req, res, next) => {
-  try {
-    await User.findByIdAndDelete({ _id: req.query.id }).exec();
-    return res.status(200).json({ message: "user deleted successfully" });
-  } catch (error) {
-    next(error);
-  }
-});
-
 route.get("/users/logout", checkToken, async (req, res, next) => {
   res.clearCookie("token").send();
 });
