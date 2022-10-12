@@ -88,8 +88,9 @@ route.get("/users/current", checkToken, async (req, res, next) => {
   }
 });
 
-route.get("/users/logout", checkToken, async (req, res, next) => {
-  res.clearCookie("token").send();
+route.get("/users/logout", checkToken, async (req, res) => {
+  res.clearCookie("token");
+  return res.status(200);
 });
 
 export default route;
