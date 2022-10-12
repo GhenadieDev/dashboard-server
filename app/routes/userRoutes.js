@@ -89,12 +89,7 @@ route.get("/users/current", checkToken, async (req, res, next) => {
 });
 
 route.get("/users/logout", checkToken, async (req, res) => {
-  res.clearCookie("token", {
-    httpOnly: true,
-    sameSite: "none",
-    secure: true,
-    expires: Date.now(),
-  });
+  res.clearCookie("token");
   return res.status(200).json({ message: "Logged out successfully" });
 });
 
